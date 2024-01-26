@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="text/javascript" src="./index.js"></script>
+    <script type="text/javascript" src="./password.js"></script>
+    <title>Password maker</title>
+  </head>
+  <body>
+    <main>
+      <div>
+        <div id="websiteInformations">
+          <h3>Website informations</h3>
+          <div>
+            <label for="website">Website name</label>
+            <input type="text" id="website" placeholder="Website name">
+          </div>
+          <br>
+          <div>
+            <label for="account">Account identifier</label>
+            <input type="text" id="account" placeholder="Account identifier">
+          </div>
+        </div>
+        <div>
+          <h3>Secret keys</h3>
+          <div id="secretKeys">
+            <div class="secretKey" style="display: none;">
+              <input type="password" placeholder="Secret key 0">
+              <button class="showBtn" onclick="showHidePassword(this.parentElement)">S/H</button>
+              <button class="copyBtn" onclick="copyPassword(this.parentElement)">Copy</button>
+              <button class="removeBtn" onclick="removeSecretKey(this.parentElement)">x</button>
+            </div>
+          </div>
+          <br>
+          <button type="button" onclick="addSecretKey()">+</button>
+        </div>
+        <div id="options">
+          <h3>Options</h3>
+          <div>
+            <label for="upercase">Force upercase</label>
+            <input type="checkbox" id="upercase" checked/>
+          </div>
+          <div>
+            <label for="lowercase">Force lowercase</label>
+            <input type="checkbox" id="lowercase" checked/>
+          </div>
+          <div>
+            <label for="special_character">Force special character</label>
+            <input type="checkbox" id="special_character" checked/>
+          </div>
+          <div>
+            <label for="number">Force number</label>
+            <input type="checkbox" id="number" checked/>
+          </div>
+          <div>
+            <label for="maxLength">Max length</label>
+            <input type="number" id="maxLength" min="0" placeholder="Max length"/>
+          </div>
+        </div>
+        <button type="button" onclick="generatePassword()">Generate password</button>
+      </div>
+      <div>
+        <div>
+          <h3>Password generated</h3>
+          <span>Length: 0</span>
+          <input type="password" id="passwordGenerated" placeholder="Password generated" readonly>
+          <button class="showBtn" onclick="showHidePassword(this.parentElement)">S/H</button>
+          <button class="copyBtn" onclick="copyPassword(this.parentElement)">Copy</button>
+        </div>
+      </div>
+    </main>
+    <footer><a href="https://github.com/" target="_blank">Github</a></footer>
+  </body>
+  <script>addSecretKey()</script>
+</html>

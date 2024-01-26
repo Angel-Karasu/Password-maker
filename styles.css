@@ -1,0 +1,12 @@
+main {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
