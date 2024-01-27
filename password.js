@@ -1,13 +1,8 @@
-function generatePassword() {
-    const secretKeys = Array.from(document.querySelectorAll('.secretKey')).map(sK => sK.querySelector('input').value).filter(sK => sK);
-    if (!secretKeys.length) {
-        alert('Put a secret key');
-        return;
-    }
+function generatePwd(websiteName, accountIdentifier, secretKeys, nonEncodedString, maxLength) {
     var pwd = '';
     
     function createPwd() {
-        pwd = document.querySelector('#website').value + document.querySelector('#account').value;
+        pwd =  websiteName + accountIdentifier;
         secretKeys.forEach(sK => pwd = pwd.split('').map((c, i) => c+sK[i % sK.length]).join('') + sK.slice(pwd.length));
     }
     
@@ -17,15 +12,39 @@ function generatePassword() {
                 (c.charCodeAt() + i + sK[i % sK.length].charCodeAt()) % 92 + 35
             )).join('')
         );
-        [['A', 'upercase'], ['ng', 'lowercase'], ['€', 'special_character'], ['1', 'number']].forEach(elt => 
-            pwd += elt[0].repeat(document.querySelector('#'+elt[1]).checked));
+        pwd += nonEncodedString;
 
-        if (pwd.length > document.querySelector('#maxLength').value) pwd = pwd.slice(-document.querySelector('#maxLength').value);
+        if (pwd.length > maxLength) pwd = pwd.slice(maxLength);
     }
 
     createPwd();
     encodePwd();
-    document.querySelector('#passwordGenerated').value = pwd;
-    document.querySelector('span').textContent =
-        document.querySelector('span').textContent.split(' ')[0]+` ${pwd.length}`;
+
+    return pwd;
+}
+
+function makePwd() {
+    const secretKeys = Array.from(document.querySelectorAll('.secretKey')).map(sK => sK.querySelector('input').value).filter(sK => sK);
+    if (!secretKeys.length) {
+        alert('Put a secret key');
+        return;
+    }
+    const addString = document.querySelector('#addString').value;
+    let maxLength = document.querySelector('#maxLength');
+    maxLength = maxLength.value.match(maxLength.pattern).length;
+    if (addString.length > maxLength) {
+        alert('Reduce the non-encoded string or increase the max length');
+        return;
+    }
+
+    const pwd = generatePwd(
+        document.querySelector('#website').value,
+        document.querySelector('#account').value,
+        secretKeys,
+        addString,
+        maxLength
+    );
+
+    document.querySelector('#pwdMade').value = pwd;
+    document.querySelector('span').textContent = pwd.length;
 }

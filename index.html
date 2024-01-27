@@ -2,75 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/6463/6463455.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./styles.css">
     <script type="text/javascript" src="./index.js"></script>
     <script type="text/javascript" src="./password.js"></script>
     <title>Password maker</title>
   </head>
   <body>
+    <header><h1>Password maker</h1></header>
     <main>
       <div>
-        <div id="websiteInformations">
-          <h3>Website informations</h3>
+        <div class="field">
+          <h2>Website informations</h2>
           <div>
             <label for="website">Website name</label>
             <input type="text" id="website" placeholder="Website name">
           </div>
-          <br>
           <div>
             <label for="account">Account identifier</label>
             <input type="text" id="account" placeholder="Account identifier">
           </div>
         </div>
-        <div>
-          <h3>Secret keys</h3>
+        <div class="field">
+          <h2>Secret keys</h2>
           <div id="secretKeys">
             <div class="secretKey" style="display: none;">
               <input type="password" placeholder="Secret key 0">
-              <button class="showBtn" onclick="showHidePassword(this.parentElement)">S/H</button>
-              <button class="copyBtn" onclick="copyPassword(this.parentElement)">Copy</button>
-              <button class="removeBtn" onclick="removeSecretKey(this.parentElement)">x</button>
+              <button class="removeBtn" onclick="removeSecretKey(this.parentElement)">X</button>
             </div>
           </div>
-          <br>
-          <button type="button" onclick="addSecretKey()">+</button>
+          <button id="addSecretKeyBtn" onclick="addSecretKey()">+</button>
         </div>
-        <div id="options">
-          <h3>Options</h3>
+        <div class="field">
+          <h2>Options</h2>
           <div>
-            <label for="upercase">Force upercase</label>
-            <input type="checkbox" id="upercase" checked/>
-          </div>
-          <div>
-            <label for="lowercase">Force lowercase</label>
-            <input type="checkbox" id="lowercase" checked/>
-          </div>
-          <div>
-            <label for="special_character">Force special character</label>
-            <input type="checkbox" id="special_character" checked/>
-          </div>
-          <div>
-            <label for="number">Force number</label>
-            <input type="checkbox" id="number" checked/>
+            <label for="addString">Add non-encoded string</label>
+            <input type="text" id="addString" placeholder="Add non-encoded string" value="PwdM4k€r">
           </div>
           <div>
             <label for="maxLength">Max length</label>
-            <input type="number" id="maxLength" min="0" placeholder="Max length"/>
+            <input type="text" id="maxLength" placeholder="Max length" pattern="[0-9]*">
           </div>
         </div>
-        <button type="button" onclick="generatePassword()">Generate password</button>
-      </div>
-      <div>
-        <div>
-          <h3>Password generated</h3>
-          <span>Length: 0</span>
-          <input type="password" id="passwordGenerated" placeholder="Password generated" readonly>
-          <button class="showBtn" onclick="showHidePassword(this.parentElement)">S/H</button>
-          <button class="copyBtn" onclick="copyPassword(this.parentElement)">Copy</button>
+        <button id="makePwdBtn" onclick="makePwd()"><h3>Make password</h3></button>
+        <div id="pwdMadeField" class="field">
+          <h2>Your password</h2>
         </div>
       </div>
     </main>
-    <footer><a href="https://github.com/Angel-Karasu/Password-maker/tree/main" target="_blank">Github page</a></footer>
+    <footer>
+      <a href="https://github.com/Angel-Karasu/PasswordMaker/tree/main" target="_blank">Github page</a>
+      <a href="https://alternativeto.net/category/security/password-manager/" target="_blank">Password managers</a>
+    </footer>
   </body>
-  <script>addSecretKey()</script>
 </html>
