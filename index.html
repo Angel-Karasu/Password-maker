@@ -11,18 +11,18 @@
     <title>Password maker</title>
   </head>
   <body>
-    <header><h1>Password maker</h1></header>
+    <header><h1 onclick="showHideAll(this)">Passw<i class="bi bi-eye"></i>rd maker</h1></header>
     <main>
       <div>
         <div class="field">
           <h2>Website informations</h2>
           <div>
             <label for="website">Website name</label>
-            <input type="text" id="website" placeholder="Website name">
+            <input type="password" id="website" placeholder="Website name">
           </div>
           <div>
             <label for="account">Account identifier</label>
-            <input type="text" id="account" placeholder="Account identifier">
+            <input type="password" id="account" placeholder="Account identifier">
           </div>
         </div>
         <div class="field">
@@ -39,14 +39,14 @@
           <h2>Options</h2>
           <div>
             <label for="addString">Add non-encoded string</label>
-            <input type="text" id="addString" placeholder="Add non-encoded string" value="PwdM4k€r">
+            <input type="password" id="addString" placeholder="Add non-encoded string" value="PwdM4k€r">
           </div>
           <div>
             <label for="maxLength">Max length</label>
-            <input type="text" id="maxLength" placeholder="Max length" pattern="[0-9]*">
+            <input type="number" id="maxLength" placeholder="Max length" min="0">
           </div>
         </div>
-        <button id="makePwdBtn" onclick="makePwd()"><h3>Make password</h3></button>
+        <button id="makePwdBtn" onclick="makePwd()">Make password</button>
         <div id="pwdMadeField" class="field">
           <h2>Your password</h2>
         </div>

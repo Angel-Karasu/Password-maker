@@ -16,7 +16,7 @@ function addPwdMadeField() {
 function addInputButton() {
     const buttons = [
         {innerHTMLValue:'<i class="bi bi-clipboard"></i>', onclickValue:'copy(this.parentElement)'},
-        {innerHTMLValue:'<i class="bi bi-eye-slash"></i>', onclickValue:'showHide(this.parentElement)'},
+        {innerHTMLValue:'<i class="bi bi-eye"></i>', onclickValue:'showHide(this.parentElement)'},
     ].map(opt => {
         let btn = document.createElement('button');
         btn.className = 'inputBtn'
@@ -25,9 +25,9 @@ function addInputButton() {
         return btn;
     });
     
-    Array.from(document.querySelectorAll('input')).forEach(input => {
+    Array.from(document.querySelectorAll('input[type="password')).forEach(input => {
         buttons.forEach(btn => input.insertAdjacentElement('afterend', btn));
-        input.parentElement.outerHTML = input.parentElement.outerHTML.replace('-slash', input.type == 'password' ? '':'-slash');
+        input.parentElement.outerHTML = input.parentElement.outerHTML;
     });
 }
 
@@ -53,15 +53,21 @@ function showHide(div) {
         div.querySelector('.bi-eye').className += '-slash'
     } else {
         div.querySelector('input').type = 'password';
-        div.outerHTML = div.outerHTML.replace('-slash', '');
+        div.querySelector('.bi-eye-slash').className = div.querySelector('.bi-eye-slash').className.replace('-slash', '');
     }
+}
+
+function showHideAll(h1) {
+    let eye = h1.querySelector('i');
+    eye.className = h1.querySelector('.bi-eye-slash') ? eye.className.replace('-slash', '') : eye.className+'-slash';
+    Array.from(document.querySelectorAll('input[type="'+(h1.querySelector('.bi-eye-slash') ? 'password':'text'))).forEach(input => showHide(input.parentElement));
 }
 
 function copy(div) {
     navigator.clipboard.writeText(div.querySelector('input').value);
     div.querySelector('.bi-clipboard').className += '-check-fill';
     setTimeout(() => 
-        div.outerHTML = div.outerHTML.replace('-check-fill', '')
+        div.querySelector('.bi-clipboard-check-fill').className = 'bi bi-clipboard'
     , 500)
 }
 
