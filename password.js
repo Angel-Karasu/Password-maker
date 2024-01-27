@@ -31,8 +31,8 @@ function makePwd() {
     }
     const addString = document.querySelector('#addString').value;
     let maxLength = document.querySelector('#maxLength');
-    maxLength = maxLength.value.match(maxLength.pattern).length;
-    if (addString.length > maxLength && maxLength > 1) {
+    maxLength = maxLength.value.match(maxLength.pattern)[0];
+    if (addString.length > maxLength && maxLength > 0) {
         alert('Reduce the non-encoded string or increase the max length');
         return;
     }
@@ -42,7 +42,7 @@ function makePwd() {
         document.querySelector('#account').value,
         secretKeys,
         addString,
-        maxLength - 1
+        maxLength
     );
 
     document.querySelector('#pwdMade').value = pwd;
