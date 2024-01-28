@@ -1,6 +1,6 @@
 # Password Maker
 
-This is a simple password maker project that creates an unique password for every website. If a site is hacked, your other passwords can't be found, but with its secret key-based generation, you'll easily find your own passwords, even without a password manager (but it's recommended to use one).
+This is a simple password maker project that help to creates an unique password for every website. If a site is hacked, your other passwords can't be found, but with its secret key-based generation, you'll easily find your own passwords, even without a password manager (but it's recommended to use one).
 
 ## How to use
 
