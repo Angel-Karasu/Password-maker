@@ -18,19 +18,19 @@
           <h2>Website informations</h2>
           <div>
             <label for="website">Website name</label>
-            <input type="password" id="website" placeholder="Website name">
+            <input type="password" id="website" placeholder="Website name" value="">
           </div>
           <div>
             <label for="account">Account identifier</label>
-            <input type="password" id="account" placeholder="Account identifier">
+            <input type="password" id="account" placeholder="Account identifier" value="">
           </div>
         </div>
         <div class="field">
           <h2>Secret keys</h2>
           <div id="secretKeys">
             <div class="secretKey" style="display: none;">
-              <input type="password" placeholder="Secret key 0">
-              <button class="removeBtn" onclick="removeSecretKey(this.parentElement)">X</button>
+              <input type="password" placeholder="Secret key 0" value="">
+              <button class="removeBtn red" onclick="removeSecretKey(this.parentElement)">X</button>
             </div>
           </div>
           <button id="addSecretKeyBtn" onclick="addSecretKey()">+</button>
@@ -46,7 +46,7 @@
             <input type="number" id="maxLength" placeholder="Max length" min="0">
           </div>
         </div>
-        <button id="makePwdBtn" onclick="makePwd()">Make password</button>
+        <button id="makePwdBtn" class="green" onclick="makePwd()">Make password</button>
         <div id="pwdMadeField" class="field">
           <h2>Your password</h2>
         </div>

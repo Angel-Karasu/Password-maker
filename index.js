@@ -4,7 +4,6 @@ function addPwdMadeField() {
         {attribute:'id', value:'pwdMade'},
         {attribute:'placeholder', value: document.querySelector('#pwdMadeField h2').textContent},
         {attribute:'readOnly', value:true},
-        {attribute:'type', value:'password'},
     ].forEach(elt => passwordGenerated.querySelector('input')[elt.attribute] = elt.value);
 
     passwordGenerated.querySelector('label').innerHTML = 'Length : <span>0</span>';
@@ -15,8 +14,8 @@ function addPwdMadeField() {
 
 function addInputButton() {
     const buttons = [
-        {innerHTMLValue:'<i class="bi bi-clipboard"></i>', onclickValue:'copy(this.parentElement)'},
-        {innerHTMLValue:'<i class="bi bi-eye"></i>', onclickValue:'showHide(this.parentElement)'},
+        {innerHTMLValue:'<i class="bi bi-eye"></i>', onclickValue:'showHide(this.parentElement.parentElement)'},
+        {innerHTMLValue:'<i class="bi bi-clipboard"></i>', onclickValue:'copy(this.parentElement.parentElement)'},
     ].map(opt => {
         let btn = document.createElement('button');
         btn.className = 'inputBtn'
@@ -26,7 +25,11 @@ function addInputButton() {
     });
     
     Array.from(document.querySelectorAll('input[type="password')).forEach(input => {
-        buttons.forEach(btn => input.insertAdjacentElement('afterend', btn));
+        let div = document.createElement('div');
+        div.className = 'inputBtns';
+        buttons.forEach(btn => div.appendChild(btn));
+
+        input.insertAdjacentElement('afterend', div);
         input.parentElement.outerHTML = input.parentElement.outerHTML;
     });
 }

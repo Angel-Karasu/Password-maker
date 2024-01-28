@@ -1,5 +1,18 @@
 function generatePwd(websiteName, accountIdentifier, secretKeys, nonEncodedString, maxLength) {
     var pwd = '';
+
+    function hasError() {
+        let alertMsg = 'You need to put :\n';
+        if (!websiteName) alertMsg += '\t- the website name\n';
+        if (!accountIdentifier) alertMsg += '\t- your account identifier\n';
+        if (secretKeys < 1) alertMsg += '\t- a secret key\n';
+        if (addString.length > maxLength && maxLength > 0) alertMsg += '\t- a non-encoded string shorter that the max length\n';
+        
+        if (alertMsg.split('\n').length > 2) {
+            alert(alertMsg);
+            return true;
+        } return false;
+    }
     
     function createPwd() {
         pwd =  websiteName + accountIdentifier;
@@ -17,33 +30,32 @@ function generatePwd(websiteName, accountIdentifier, secretKeys, nonEncodedStrin
         if (pwd.length > maxLength) pwd = pwd.slice(-maxLength);
     }
 
-    createPwd();
-    encodePwd();
-
+    if (!hasError()) {
+        createPwd();
+        encodePwd();
+    }
     return pwd;
 }
 
 function makePwd() {
-    const secretKeys = Array.from(document.querySelectorAll('.secretKey')).map(sK => sK.querySelector('input').value).filter(sK => sK);
-    if (!secretKeys.length) {
-        alert('Put a secret key');
-        return;
-    }
-    const addString = document.querySelector('#addString').value;
-    const maxLength = document.querySelector('#maxLength').value;
-    if (addString.length > maxLength && maxLength > 0) {
-        alert('Reduce the non-encoded string or increase the max length');
-        return;
-    }
-
     const pwd = generatePwd(
         document.querySelector('#website').value,
         document.querySelector('#account').value,
-        secretKeys,
-        addString,
-        maxLength
+        Array.from(document.querySelectorAll('.secretKey')).map(sK => sK.querySelector('input').value).filter(sK => sK),
+        document.querySelector('#addString').value,
+        document.querySelector('#maxLength').value
     );
 
-    document.querySelector('#pwdMade').value = pwd;
-    document.querySelector('span').textContent = pwd.length;
+    if (pwd) {
+        document.querySelector('#pwdMade').value = pwd;
+        document.querySelector('span').textContent = pwd.length;
+        document.querySelector('#pwdMade').classList.add('green');
+        setTimeout(() => document.querySelector('#pwdMade').classList.remove('green'), 500);
+    } else {
+        Array.from(document.querySelectorAll('input[value=""]')).forEach(input => {
+            input.classList.add('red');
+            setTimeout(() => input.classList.remove('red'), 1000);
+        });
+    };
+
 }
