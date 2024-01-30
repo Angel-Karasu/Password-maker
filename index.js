@@ -80,6 +80,30 @@ function removeSecretKey(secretKey) {
     updateSecretKeyID(id);
 }
 
+function makePwd() {
+    const pwd = generatePwd(
+        document.querySelector('#website').value,
+        document.querySelector('#account').value,
+        Array.from(document.querySelectorAll('.secretKey')).map(sK => sK.querySelector('input').value).filter(sK => sK),
+        document.querySelector('#addString').value,
+        document.querySelector('#maxLength').value,
+        document.querySelector('#method').value
+    );
+
+    if (pwd) {
+        document.querySelector('#pwdMade').value = pwd;
+        document.querySelector('span').textContent = pwd.length;
+        document.querySelector('#pwdMade').classList.add('green');
+        setTimeout(() => document.querySelector('#pwdMade').classList.remove('green'), 500);
+    } else {
+        Array.from(document.querySelectorAll('input[value=""]')).forEach(input => {
+            input.classList.add('red');
+            setTimeout(() => input.classList.remove('red'), 1000);
+        });
+    };
+
+};
+
 window.onload = () => {
     addPwdMadeField();
     addInputButton();

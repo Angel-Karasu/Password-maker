@@ -49,6 +49,17 @@
             <label for="maxLength">Max length</label>
             <input type="number" id="maxLength" placeholder="Max length" min="0">
           </div>
+          <div>
+            <label for="method">Encoding method</label>
+            <select id="method">
+              <optgroup label="Easy to calculate manually">
+                <option value="vigenere">Vigenère cipher</option>
+              </optgroup>
+              <optgroup label="Long to calculate manually">
+                <option value="matrix" selected>Matrix product</option>
+              </optgroup>
+            </select>
+          </div>
         </div>
         <button id="makePwdBtn" class="green" onclick="makePwd()">Make password</button>
         <div id="pwdMadeField" class="field">
