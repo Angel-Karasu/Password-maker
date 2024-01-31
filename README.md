@@ -4,7 +4,7 @@ This is a simple password maker project that help to creates an unique password 
 
 ## How to use
 
-To use this password maker, simply go on the [password maker website](https://angel-karasu.github.io/PasswordMaker/) and complete the fields. You must enter the website name, your account identifier and at least one secret key (but it's recommended to use more). If you set a non-encoded string, its length must be shorter that the max length of the password. See the `password.js` file if you want to understand how the password maker works.
+To use this password maker, simply go on the [password maker website](https://angel-karasu.github.io/password-maker/) and complete the fields. You must enter the website name, your account identifier and at least one secret key (but it's recommended to use more). If you set a non-encoded string, its length must be shorter that the max length of the password. See the `password.js` file if you want to understand how the password maker works.
 
 ## License
 
