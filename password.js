@@ -32,22 +32,20 @@ function generatePwd(websiteName, accountIdentifier, secretKeys, nonEncodedStrin
         };
 
         function matrix() {
-            const matrixSize = Math.ceil(Math.sqrt(pwd.length));
+            const columnMatrixToString = mat => mat.map(c => String.fromCharCode(c % 92 + 35)).join('');
+            const product = (m1, m2) => m1.map(row => m2[0].map((_, j) => row.reduce((acc, _, k) => acc + row[k] * m2[k][j], 0)));
+            const stringToColumnMatrix = str => str.split('').map((_, i) => [str[i].charCodeAt()]);
+            const stringToSquareMatrix = str => {
+                const matSize = Math.ceil(Math.sqrt(str.length));
+                return Array(matSize).fill(Array(matSize).fill()).map((row, i) => row.map((_, j) =>  str[(i*matSize + j) % str.length].charCodeAt()));
+            }
 
-            function stringToMatrix(str) {
-                return Array(matrixSize).fill(Array(matrixSize).fill()).map((row, i) => row.map((_, j) => str[(i*matrixSize + j) % str.length].charCodeAt()));
-            };
-            function multiplyMatrices(mat1, mat2) {
-                return mat1.map(row => mat2[0].map((_, j) => row.reduce((acc, _, k) => acc + row[k] * mat2[k][j], 0)));
-            };
-
-            let pwdMatrix = stringToMatrix(pwd);
             secretKeys.forEach(sK => {
-                const sKMatrix = stringToMatrix(sK);
-                pwdMatrix = multiplyMatrices(sKMatrix, multiplyMatrices(pwdMatrix, sKMatrix)).map(row => row.map(c => c % 92 + 35));
+                const sKMatrix = stringToSquareMatrix(sK);
+                const tmp = pwd + pwd.slice(0, sKMatrix.length-pwd.length % sKMatrix.length);
+                pwd = Array(tmp.length/sKMatrix.length).fill().map((_, i) =>
+                    columnMatrixToString(product(sKMatrix, stringToColumnMatrix(tmp.slice(i*sKMatrix.length, (i+1)*sKMatrix.length))))).join('').slice(0, pwd.length);
             });
-
-            pwd = pwdMatrix.map(row => row.map(c => String.fromCharCode(c)).join('')).join('').slice(0, pwd.length);
         };
 
         eval(method).call();
