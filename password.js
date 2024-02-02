@@ -19,7 +19,7 @@ function generatePwd(websiteName, accountIdentifier, secretKeys, nonEncodedStrin
     
     function createPwd() {
         pwd =  websiteName + accountIdentifier;
-        secretKeys.forEach(sK => pwd = pwd.split('').map((c, i) => c+sK[i % sK.length]).join('') + sK.slice(pwd.length));
+        secretKeys.forEach(sK => pwd = pwd.split('').map((c, i) => c+sK[i % sK.length]).join(''));
     };
     
     function encodePwd() {
