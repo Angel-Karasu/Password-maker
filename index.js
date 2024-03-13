@@ -38,8 +38,8 @@ function remove_secret_key(secret_key) {
     update_secret_key_ID(id);
 }
 
-function makePwd() {
-    const pwd = generatePwd(
+function make_password() {
+    const pwd = generate_password(
         document.querySelector('#website').value,
         document.querySelector('#account').value,
         Array.from(document.querySelectorAll('.secret-key')).map(sK => sK.querySelector('input').value).filter(sK => sK),
