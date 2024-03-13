@@ -10,7 +10,7 @@ See the `password.js` file if you want to understand how the password maker work
 
 ## To do
 
-- [ ] Schema to understand how it works
+- [ ] Make a wiki to explain how it works
   
 ## License
 
