@@ -8,7 +8,7 @@ function generatePwd(websiteName, accountIdentifier, secretKeys, nonEncodedStrin
         if (!websiteName) alertMsg += '\t- the website name\n';
         if (!accountIdentifier) alertMsg += '\t- your account identifier\n';
         if (secretKeys < 1) alertMsg += '\t- at least a secret key\n';
-        if (addString.length > maxLength && maxLength > 0) alertMsg += '\t- a non-encoded string shorter that the max length\n';
+        if (nonEncodedString.length > maxLength && maxLength > 0) alertMsg += '\t- a non-encoded string shorter that the max length\n';
         if (!methodsAvailable.includes(method)) alertMsg += '\t- a method among '+methodsAvailable.join(' | ');
         
         if (alertMsg.split('\n').length > 2) {

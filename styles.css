@@ -44,9 +44,9 @@ footer {
     border-radius: 10px;
     padding: 15px 25px 10px;
 }
-.field > div, .secretKey { position: relative; }
+.field > div, .secret-key { position: relative; }
 
-h1, button { cursor: pointer; }
+button { cursor: pointer; }
 h1 > i {
     position: relative;
     top: 2px;
@@ -91,41 +91,40 @@ button {
     height: 24px;
     border-radius: 5px;
     border: solid 1px;
-    padding: 2px;
 }
 
-.inputBtns {
+.input_buttons {
     position: absolute;
     right: 15px;
     bottom: 5px;
     background: none;
 }
 
-.inputBtn {
+.input_button {
     background: none;
     border: none;
 }
 
-.removeBtn {
+.remove {
     position: absolute;
     margin-left: 5px;
 }
-.removeBtn:hover {
+.remove:hover {
     background-color: var(--red_alt);
     color: var(--black);
 }
 
-#addSecretKeyBtn {
+#add-secret-key {
     margin-top: 5px;
-    border-color: var(--yellow);
-    color: var(--yellow);
+    border-color: var(--green_alt);
+    color: var(--green_alt);
 }
-#addSecretKeyBtn:hover {
-    background-color: var(--yellow);
+#add-secret-key:hover {
+    background-color: var(--green_alt);
     color: var(--black);
 }
 
-#makePwdBtn {
+#make-password {
     width: 100%;
     height: 30px;
     margin-bottom: 5px;
@@ -133,7 +132,7 @@ button {
     font-size: 15px;
     font-weight: bold;
 }
-#makePwdBtn:hover {
+#make-password:hover {
     background-color: var(--green);
     color: var(--black);
 }

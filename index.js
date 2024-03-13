@@ -1,56 +1,20 @@
-function addPwdMadeField() {
-    let passwordGenerated = document.querySelector('#website').parentElement.cloneNode(true);
-    [
-        {attribute:'id', value:'pwdMade'},
-        {attribute:'placeholder', value: document.querySelector('#pwdMadeField h2').textContent},
-        {attribute:'readOnly', value:true},
-    ].forEach(elt => passwordGenerated.querySelector('input')[elt.attribute] = elt.value);
-
-    passwordGenerated.querySelector('label').innerHTML = 'Length : <span>0</span>';
-    passwordGenerated.querySelector('label').setAttribute('for', passwordGenerated.querySelector('input').id);
-
-    document.querySelector('#pwdMadeField').appendChild(passwordGenerated);
-}
-
-function addInputButton() {
-    const buttons = [
-        {innerHTMLValue:'<i class="bi bi-eye"></i>', onclickValue:'showHide(this.parentElement.parentElement)'},
-        {innerHTMLValue:'<i class="bi bi-clipboard"></i>', onclickValue:'copy(this.parentElement.parentElement)'},
-    ].map(opt => {
-        let btn = document.createElement('button');
-        btn.className = 'inputBtn'
-        btn.innerHTML = opt.innerHTMLValue;
-        btn.setAttribute('onclick', opt.onclickValue);
-        return btn;
-    });
-    
-    Array.from(document.querySelectorAll('input[type="password')).forEach(input => {
-        let div = document.createElement('div');
-        div.className = 'inputBtns';
-        buttons.forEach(btn => div.appendChild(btn));
-
-        input.insertAdjacentElement('afterend', div);
-        input.parentElement.outerHTML = input.parentElement.outerHTML;
-    });
-}
-
-function updateSecretKeyID(id) {
-    let secretKeys = document.querySelectorAll('.secretKey');
-    Array.from(secretKeys).slice(id).forEach((sK, i) => {
+function update_secret_key_ID(id) {
+    let secret_keys = document.querySelectorAll('.secret-key');
+    Array.from(secret_keys).slice(id).forEach((sK, i) => {
         let input = sK.querySelector('input');
         input.placeholder = input.placeholder.split(' ').slice(0,2).join(' ')+' '+(id+i)
     });
-    secretKeys[1].querySelector('.removeBtn').style.visibility = secretKeys.length < 3 ? 'hidden':'';
+    secret_keys[1].querySelector('.remove').style.visibility = secret_keys.length < 3 ? 'hidden':'';
 }
 
-function addSecretKey() {
-    let secretKey = document.querySelector('.secretKey').cloneNode(true);
-    secretKey.style.display = '';
-    document.querySelector('#secretKeys').appendChild(secretKey);
-    updateSecretKeyID(document.querySelectorAll('.secretKey').length - 1);
+function add_secret_key() {
+    let secret_key = document.querySelector('.secret-key').cloneNode(true);
+    secret_key.style.display = '';
+    document.querySelector('#secret-keys').appendChild(secret_key);
+    update_secret_key_ID(document.querySelectorAll('.secret-key').length - 1);
 }
 
-function showHide(div) {
+function display(div) {
     if (div.querySelector('input').type == 'password') {
         div.querySelector('input').type = 'text';
         div.querySelector('.bi-eye').className += '-slash'
@@ -58,12 +22,6 @@ function showHide(div) {
         div.querySelector('input').type = 'password';
         div.querySelector('.bi-eye-slash').className = div.querySelector('.bi-eye-slash').className.replace('-slash', '');
     }
-}
-
-function showHideAll(h1) {
-    let eye = h1.querySelector('i');
-    eye.className = h1.querySelector('.bi-eye-slash') ? eye.className.replace('-slash', '') : eye.className+'-slash';
-    Array.from(document.querySelectorAll('input[type="'+(h1.querySelector('.bi-eye-slash') ? 'password':'text'))).forEach(input => showHide(input.parentElement));
 }
 
 function copy(div) {
@@ -74,27 +32,27 @@ function copy(div) {
     , 500)
 }
 
-function removeSecretKey(secretKey) {
-    const id = Array.from(document.querySelectorAll('.secretKey')).indexOf(secretKey);
-    secretKey.remove()
-    updateSecretKeyID(id);
+function remove_secret_key(secret_key) {
+    const id = Array.from(document.querySelectorAll('.secret-key')).indexOf(secret_key);
+    secret_key.remove()
+    update_secret_key_ID(id);
 }
 
 function makePwd() {
     const pwd = generatePwd(
         document.querySelector('#website').value,
         document.querySelector('#account').value,
-        Array.from(document.querySelectorAll('.secretKey')).map(sK => sK.querySelector('input').value).filter(sK => sK),
-        document.querySelector('#addString').value,
-        document.querySelector('#maxLength').value,
+        Array.from(document.querySelectorAll('.secret-key')).map(sK => sK.querySelector('input').value).filter(sK => sK),
+        document.querySelector('#non-encoded-string').value,
+        document.querySelector('#max-length').value,
         document.querySelector('#method').value
     );
 
     if (pwd) {
-        document.querySelector('#pwdMade').value = pwd;
+        document.querySelector('#password').value = pwd;
         document.querySelector('span').textContent = pwd.length;
-        document.querySelector('#pwdMade').classList.add('green');
-        setTimeout(() => document.querySelector('#pwdMade').classList.remove('green'), 500);
+        document.querySelector('#password').classList.add('green');
+        setTimeout(() => document.querySelector('#password').classList.remove('green'), 500);
     } else {
         Array.from(document.querySelectorAll('input[value=""]')).forEach(input => {
             input.classList.add('red');
@@ -105,7 +63,5 @@ function makePwd() {
 };
 
 window.onload = () => {
-    addPwdMadeField();
-    addInputButton();
-    for(let i=0; i<3; i++) addSecretKey();
+    for(let i=0; i<3; i++) add_secret_key();
 }
