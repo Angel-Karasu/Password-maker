@@ -1,17 +1,17 @@
 * {
     margin: 0; padding: 0;
-    background-color: var(--color0);
+    background-color: var(--black);
     text-align: center;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--color7);
+    color: var(--white);
 }
 .green {
-    border-color: var(--color2);
-    color: var(--color2);
+    border-color: var(--green);
+    color: var(--green);
 }
 .red {
-    border-color: var(--color9);
-    color: var(--color9);
+    border-color: var(--red_alt);
+    color: var(--red_alt);
 }
 
 body { min-width: 350px; }
@@ -20,7 +20,7 @@ header {
     height: 40px;
     min-width: 260px;
     margin: 10px 0;
-    border-bottom: solid 1px var(--color8);
+    border-bottom: solid 1px var(--black_alt);
     padding-bottom: 10px;
 }
 
@@ -34,13 +34,13 @@ main {
 footer {
     display: flex;
     justify-content: space-around;
-    border-top: solid 1px var(--color8);
+    border-top: solid 1px var(--black_alt);
     padding: 10px;
 }
 
 .field {
     margin: 15px 0;
-    border: solid 2px var(--color8);
+    border: solid 2px var(--black_alt);
     border-radius: 10px;
     padding: 15px 25px 10px;
 }
@@ -52,12 +52,12 @@ h1 > i {
     top: 2px;
     font-size: 25px;
 }
-i { color: var(--color12); }
+i { color: var(--blue_alt); }
 
 h2 {
     margin: -30px 0 10px;
-    background-color: var(--color0);
-    color: var(--color15);
+    background-color: var(--black);
+    color: var(--white_alt);
 }
 
 label {
@@ -69,10 +69,10 @@ input, select {
     width: 200px;
     height: 20px;
     margin-bottom: 5px;
-    border: solid 1px var(--color8);
+    border: solid 1px var(--black_alt);
     border-radius: 5px;
     text-align: left;
-    color: var(--color15);
+    color: var(--white_alt);
     padding: 1px 5px;
 }
 
@@ -111,18 +111,18 @@ button {
     margin-left: 5px;
 }
 .removeBtn:hover {
-    background-color: var(--color9);
-    color: var(--color0);
+    background-color: var(--red_alt);
+    color: var(--black);
 }
 
 #addSecretKeyBtn {
     margin-top: 5px;
-    border-color: var(--color3);
-    color: var(--color3);
+    border-color: var(--yellow);
+    color: var(--yellow);
 }
 #addSecretKeyBtn:hover {
-    background-color: var(--color3);
-    color: var(--color0);
+    background-color: var(--yellow);
+    color: var(--black);
 }
 
 #makePwdBtn {
@@ -134,6 +134,6 @@ button {
     font-weight: bold;
 }
 #makePwdBtn:hover {
-    background-color: var(--color2);
-    color: var(--color0);
+    background-color: var(--green);
+    color: var(--black);
 }
