@@ -1,25 +1,24 @@
 * {
-    --background: #121212;
-    --foreground: #e4e4e4;
-    --color8: #585858;
-
     margin: 0; padding: 0;
-    background-color: var(--background);
+    background-color: var(--color0);
     text-align: center;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #BABABA;
+    color: var(--color7);
 }
 .green {
-    border-color: #3DA542;
-    color: #3DA542;
+    border-color: var(--color2);
+    color: var(--color2);
 }
 .red {
-    border-color: #911F22;
-    color: #911F22;
+    border-color: var(--color9);
+    color: var(--color9);
 }
+
+body { min-width: 350px; }
 
 header {
     height: 40px;
+    min-width: 260px;
     margin: 10px 0;
     border-bottom: solid 1px var(--color8);
     padding-bottom: 10px;
@@ -53,12 +52,12 @@ h1 > i {
     top: 2px;
     font-size: 25px;
 }
-i { color: #62AFDE; }
+i { color: var(--color12); }
 
 h2 {
     margin: -30px 0 10px;
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--color0);
+    color: var(--color15);
 }
 
 label {
@@ -73,7 +72,7 @@ input, select {
     border: solid 1px var(--color8);
     border-radius: 5px;
     text-align: left;
-    color: var(--foreground);
+    color: var(--color15);
     padding: 1px 5px;
 }
 
@@ -112,18 +111,18 @@ button {
     margin-left: 5px;
 }
 .removeBtn:hover {
-    background-color: #911F22;
-    color: var(--background);
+    background-color: var(--color9);
+    color: var(--color0);
 }
 
 #addSecretKeyBtn {
     margin-top: 5px;
-    border-color: #E38D00;
-    color: #E38D00;
+    border-color: var(--color3);
+    color: var(--color3);
 }
 #addSecretKeyBtn:hover {
-    background-color: #E38D00;
-    color: var(--background);
+    background-color: var(--color3);
+    color: var(--color0);
 }
 
 #makePwdBtn {
@@ -135,12 +134,6 @@ button {
     font-weight: bold;
 }
 #makePwdBtn:hover {
-    background-color: #3DA542;
-    color: var(--background);
-}
-
-
-@media only screen and (max-width: 450px) {
-    main > div, input, select { width: 90%; }
-    .inputBtns { right: 10px; }
+    background-color: var(--color2);
+    color: var(--color0);
 }
