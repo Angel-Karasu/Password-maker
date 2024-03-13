@@ -8,9 +8,11 @@ To use this password maker, simply go on the [password maker website](https://an
 
 See the `password.js` file if you want to understand how the password maker works.
 
+## How it works
+
 ## To do
 
-- [ ] Make a wiki to explain how it works
+- [ ] Complete how it works
   
 ## License
 
