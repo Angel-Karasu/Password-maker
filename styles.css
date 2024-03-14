@@ -93,23 +93,23 @@ button {
     border: solid 1px;
 }
 
-.input_buttons {
+.input-buttons {
     position: absolute;
     right: 15px;
     bottom: 5px;
     background: none;
 }
 
-.input_button {
+.input-button {
     background: none;
     border: none;
 }
 
-.remove {
+.remove-button {
     position: absolute;
     margin-left: 5px;
 }
-.remove:hover {
+.remove-button:hover {
     background-color: var(--red_alt);
     color: var(--black);
 }
@@ -124,7 +124,7 @@ button {
     color: var(--black);
 }
 
-#make-password {
+#make-password-button {
     width: 100%;
     height: 30px;
     margin-bottom: 5px;
@@ -132,7 +132,7 @@ button {
     font-size: 15px;
     font-weight: bold;
 }
-#make-password:hover {
+#make-password-button:hover {
     background-color: var(--green);
     color: var(--black);
 }

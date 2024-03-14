@@ -1,4 +1,4 @@
-function generate_password(website_name, account_identifier, secret_keys, non_encoded_string, max_length, method) {
+export default function generate_password(website_name, account_identifier, secret_keys, non_encoded_string, max_length, method) {
     var pwd = '';
 
     function has_error() {

@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://angel-karasu.github.io/karoace-theme/styles.css">
     <link rel="stylesheet" href="./styles.css">
-    <script type="text/javascript" src="./index.js"></script>
-    <script type="text/javascript" src="./password.js"></script>
+    <script type="module" src="./index.js"></script>
     <noscript>JavaScript is required for this website. Please allow JavaScript and refresh the page.</noscript>
     <title>Password maker</title>
   </head>
@@ -35,14 +34,10 @@
           <div id="secret-keys">
             <div class="secret-key" style="display: none;">
               <input type="password" id="secret-key-0" placeholder="Secret key 0" value="">
-              <div class="input_buttons">
-                <button class="input_button" onclick="display(this.parentElement.parentElement)"><i class="bi bi-eye"></i></button>
-                <button class="input_button" onclick="copy(this.parentElement.parentElement)"><i class="bi bi-clipboard"></i></button>
-              </div>
-              <button class="remove red" onclick="remove_secret_key(this.parentElement)">X</button>
+              <button class="remove-button red">X</button>
             </div>
           </div>
-          <button id="add-secret-key" onclick="add_secret_key()">+</button>
+          <button id="add-secret-key">+</button>
         </div>
         <div class="field">
           <h2>Options</h2>
@@ -66,22 +61,18 @@
             </select>
           </div>
         </div>
-        <button id="make-password" class="green" onclick="make_password()">Make password</button>
+        <button id="make-password-button" class="green">Make password</button>
         <div id="password-field" class="field">
           <h2>Your password</h2>
           <div>
             <label for="password">Length : <span>0</span></label>
             <input type="password" id="password" placeholder="Your password" value="" readonly="">
-            <div class="input_buttons">
-              <button class="input_button" onclick="display(this.parentElement.parentElement)"><i class="bi bi-eye"></i></button>
-              <button class="input_button" onclick="copy(this.parentElement.parentElement)"><i class="bi bi-clipboard"></i></button>
-            </div>
           </div>
         </div>
       </div>
     </main>
     <footer>
-      <a href="https://github.com/Angel-Karasu/PasswordMaker/tree/main">Github page</a>
+      <a href="https://github.com/Angel-Karasu/password-maker/tree/main">Github page</a>
       <a href="https://alternativeto.net/category/security/password-manager/" target="_blank">Password managers</a>
     </footer>
   </body>
