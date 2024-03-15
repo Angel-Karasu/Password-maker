@@ -1,4 +1,4 @@
-import generate_password from "./password.js";
+import {encode_methods, generate_password} from "./password.js";
 
 function update_secret_key_ID(id) {
     let secret_keys = document.querySelectorAll('.secret-key');
@@ -32,6 +32,16 @@ function add_input_buttons(input) {
     input_buttons.forEach(button => div.appendChild(button));
 
     input.insertAdjacentElement('afterend', div);
+}
+
+function add_methods(methods) {
+    for (let [key, value] of Object.entries(methods)) {
+        let option = document.createElement('option');
+        option.value = key;
+        option.innerHTML = value.name;
+
+        document.querySelector('#method').appendChild(option);
+    }
 }
 
 function add_secret_key() {
@@ -97,7 +107,8 @@ function make_password() {
 window.onload = () => {
     document.querySelector('#add-secret-key').addEventListener('click', add_secret_key);
     document.querySelector('#make-password-button').addEventListener('click', make_password);
-    add_input_buttons(document.querySelector('#password'));
-
+    
     Array(3).fill().forEach(add_secret_key);
+    add_methods(encode_methods);
+    add_input_buttons(document.querySelector('#password'));
 }
