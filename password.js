@@ -1,19 +1,21 @@
-function create_password(website_name, account_identifier, secret_keys) {
-    let pwd =  website_name + account_identifier;
-    secret_keys.forEach(sK => pwd = pwd.split('').map((c, i) => c+sK[i % sK.length]).join(''));
-    return pwd;
+class Encode_Method {
+    constructor(name, complexity, func) {
+        this.name = name;
+        this.complexity = complexity;
+        this.func = func;
+    }
 };
-    
-function encode_password(pwd, secret_keys, method) {
-    function vigenere() {
+
+const encode_methods = {
+    'vigenere': new Encode_Method('Vigenère cipher', 'Easy', (pwd, secret_keys) => {
         secret_keys.forEach(sK => 
             pwd = pwd.split('').map((c, i) => String.fromCharCode(
                 (c.charCodeAt() + i + sK[i % sK.length].charCodeAt()) % 92 + 35
             )).join('')
         );
-    };
-
-    function matrix() {
+        return pwd;
+    }),
+    'matrix': new Encode_Method('Matrix product', 'Long', (pwd, secret_keys) => {
         const column_matrix_to_string = mat => mat.map(c => String.fromCharCode(c % 92 + 35)).join('');
         const product = (m1, m2) => m1.map(row => m2[0].map((_, j) => row.reduce((acc, _, k) => acc + row[k] * m2[k][j], 0)));
         const string_to_column_matrix = str => str.split('').map((_, i) => [str[i].charCodeAt()]);
@@ -21,21 +23,27 @@ function encode_password(pwd, secret_keys, method) {
             const matrix_size = Math.ceil(Math.sqrt(str.length));
             return Array(matrix_size).fill(Array(matrix_size).fill()).map((row, i) => row.map((_, j) =>  str[(i*matrix_size + j) % str.length].charCodeAt()));
         }
-
+    
         secret_keys.forEach(sK => {
             const sK_matrix = string_to_square_matrix(sK);
             const tmp = pwd + pwd.slice(0, sK_matrix.length-pwd.length % sK_matrix.length);
             pwd = Array(tmp.length/sK_matrix.length).fill().map((_, i) =>
                 column_matrix_to_string(product(sK_matrix, string_to_column_matrix(tmp.slice(i*sK_matrix.length, (i+1)*sK_matrix.length))))).join('').slice(0, pwd.length);
         });
-    };
+    
+        return pwd;
+    }),
+};
 
-    eval(method).call();
-}
+function create_password(website_name, account_identifier, secret_keys) {
+    let pwd =  website_name + account_identifier;
+    secret_keys.forEach(sK => pwd = pwd.split('').map((c, i) => c+sK[i % sK.length]).join(''));
+    return pwd;
+};
     
 export default function generate_password(website_name, account_identifier, secret_keys, non_encoded_string, max_length, method) {
     function has_error() {
-        const methods_available = ['vigenere', 'matrix'];
+        const methods_available = Object.keys(encode_methods);
 
         let alert_msg = 'You need to put :\n';
         if (!website_name) alert_msg += '\t- the website name\n';
@@ -51,7 +59,7 @@ export default function generate_password(website_name, account_identifier, secr
     };
 
     if (!has_error()) {
-        let pwd = encode_password(create_password(website_name, account_identifier, secret_keys), secret_keys, method) + non_encoded_string;
+        let pwd = encode_methods[method].func(create_password(website_name, account_identifier, secret_keys), secret_keys) + non_encoded_string;
         if (pwd.length > max_length) pwd = pwd.slice(-max_length);
 
         return pwd;
