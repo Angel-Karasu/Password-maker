@@ -2,11 +2,13 @@ import generate_password from "./password.js";
 
 function update_secret_key_ID(id) {
     let secret_keys = document.querySelectorAll('.secret-key');
+
     Array.from(secret_keys).slice(id).forEach((sK, i) => {
         let input = sK.querySelector('input');
-        input.id = input.id.split('-').slice(0,2).join('-')+'-'+(id+i);
-        input.placeholder = input.placeholder.split(' ').slice(0,2).join(' ')+' '+(id+i);
+        input.id = `${input.id.split('-').slice(0,2).join('-')}-${id+i}`;
+        input.placeholder = `${input.placeholder.split(' ').slice(0,2).join(' ')} ${id+i}`;
     });
+
     secret_keys[1].querySelector('.remove-button').style.visibility = secret_keys.length < 3 ? 'hidden':'';
 }
 
@@ -27,17 +29,20 @@ function add_input_buttons(input) {
     input_buttons[1].addEventListener('click', () => copy(input.parentElement));
     input_buttons[1].querySelector('i').classList.add('bi-clipboard');
 
-    input_buttons.forEach(button => div.appendChild(button))
+    input_buttons.forEach(button => div.appendChild(button));
 
     input.insertAdjacentElement('afterend', div);
 }
 
 function add_secret_key() {
     let secret_key = document.querySelector('.secret-key').cloneNode(true);
+
     secret_key.style.display = '';
-    add_input_buttons(secret_key.querySelector('input'));
     secret_key.querySelector('.remove-button').addEventListener('click', e => remove_secret_key(e.target.parentElement));
+    add_input_buttons(secret_key.querySelector('input'));
+
     document.querySelector('#secret-keys').appendChild(secret_key);
+
     update_secret_key_ID(document.querySelectorAll('.secret-key').length - 1);
 }
 
