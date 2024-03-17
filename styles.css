@@ -47,12 +47,6 @@ footer {
 .field > div, .secret-key { position: relative; }
 
 button { cursor: pointer; }
-h1 > i {
-    position: relative;
-    top: 2px;
-    font-size: 25px;
-}
-i { color: var(--blue_alt); }
 
 h2 {
     margin: -30px 0 10px;
@@ -75,6 +69,7 @@ input, select {
     color: var(--white_alt);
     padding: 1px 5px;
 }
+i { color: var(--blue_alt); }
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button, input[type=number] {
   -webkit-appearance: none;
