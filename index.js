@@ -23,10 +23,10 @@ function add_input_buttons(input) {
         return button;
     });
 
-    input_buttons[0].addEventListener('click', () => display(input.parentElement));
+    input_buttons[0].onclick = () => display(input.parentElement);
     input_buttons[0].querySelector('i').classList.add('bi-eye');
 
-    input_buttons[1].addEventListener('click', () => copy(input.parentElement));
+    input_buttons[1].onclick = () => copy(input.parentElement);
     input_buttons[1].querySelector('i').classList.add('bi-clipboard');
 
     input_buttons.forEach(button => div.appendChild(button));
@@ -48,7 +48,7 @@ function add_secret_key() {
     let secret_key = document.querySelector('.secret-key').cloneNode(true);
 
     secret_key.style.display = '';
-    secret_key.querySelector('.remove-button').addEventListener('click', e => remove_secret_key(e.target.parentElement));
+    secret_key.querySelector('.remove-button').onclick = () => remove_secret_key(secret_key);
     add_input_buttons(secret_key.querySelector('input'));
 
     document.querySelector('#secret-keys').appendChild(secret_key);
@@ -105,8 +105,8 @@ function make_password() {
 };
 
 window.onload = () => {
-    document.querySelector('#add-secret-key').addEventListener('click', add_secret_key);
-    document.querySelector('#make-password-button').addEventListener('click', make_password);
+    document.querySelector('#add-secret-key').onclick = add_secret_key;
+    document.querySelector('#make-password-button').onclick = make_password;
     
     Array(3).fill().forEach(add_secret_key);
     add_methods(encode_methods);
