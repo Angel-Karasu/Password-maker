@@ -2,7 +2,7 @@
 
 This is a simple password maker project that help to creates an unique password for every website. If a site is hacked, your other passwords can't be found, but with its secret key-based generation, you'll easily find your own passwords, even without a password manager (but it's recommended to use one).
 
-## Usage
+## How to use
 
 To use this password maker, simply go on the [password maker](https://angel-karasu.github.io/password-maker/) website and complete the fields. You must enter the website name, your account identifier and at least one secret key (but it's recommended to use more). If you set a non-encoded string, its length must be shorter that the max length of the password.
 
