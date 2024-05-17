@@ -86,6 +86,7 @@ function make_password() {
         document.querySelector('#account').value,
         Array.from(document.querySelectorAll('.secret-key')).map(sK => sK.querySelector('input').value).filter(sK => sK),
         document.querySelector('#non-encoded-string').value,
+        document.querySelector('#only-letters-and-numbers').checked,
         document.querySelector('#max-length').value,
         document.querySelector('#method').value
     );

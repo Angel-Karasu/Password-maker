@@ -7,9 +7,13 @@ class Encode_Method {
     }
 };
 
+const range = (start, end) => [...Array(end-start+1).keys()].map(i => i+start);
+
+let chars_code = range(33, 126);
+
 const encode_methods = {
     'matrix': new Encode_Method('Matrix product', (pwd, secret_keys) => {
-        const column_matrix_to_string = mat => mat.map(c => String.fromCharCode(c % 92 + 35)).join('');
+        const column_matrix_to_string = mat => mat.map(c => String.fromCharCode(chars_code[c % chars_code.length])).join('');
         const product = (m1, m2) => m1.map(row => m2[0].map((_, j) => row.reduce((acc, _, k) => acc + row[k] * m2[k][j], 0)));
         const string_to_column_matrix = str => str.split('').map((_, i) => [str[i].charCodeAt()]);
         const string_to_square_matrix = str => {
@@ -31,7 +35,7 @@ const encode_methods = {
     'vigenere': new Encode_Method('Vigenère cipher', (pwd, secret_keys) => {
         secret_keys.forEach(sK => 
             pwd = pwd.split('').map((c, i) => String.fromCharCode(
-                (c.charCodeAt() + i + sK[i % sK.length].charCodeAt()) % 92 + 35
+                chars_code[(c.charCodeAt() + i + sK[i % sK.length].charCodeAt()) % chars_code.length]
             )).join('')
         );
         return pwd;
@@ -44,7 +48,8 @@ function create_password(website_name, account_identifier, secret_keys) {
     return pwd;
 };
     
-function generate_password(website_name, account_identifier, secret_keys, non_encoded_string, max_length, method) {
+function generate_password(website_name, account_identifier, secret_keys, non_encoded_string='', only_letters_and_numbers=false, max_length, method) {
+    if (only_letters_and_numbers) chars_code = [...range(48, 57), ...range(65, 90), ...range(97, 122)];
     function has_error() {
         const methods_available = Object.keys(encode_methods);
 
