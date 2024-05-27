@@ -84,7 +84,7 @@ function make_password() {
     const pwd = generate_password(
         document.querySelector('#website').value,
         document.querySelector('#account').value,
-        Array.from(document.querySelectorAll('.secret-key')).map(sK => sK.querySelector('input').value).filter(sK => sK),
+        Array.from(document.querySelectorAll('.secret-key[style=""]')).map(sK => sK.querySelector('input').value).filter(sK => sK),
         document.querySelector('#non-encoded-string').value,
         document.querySelector('#only-letters-and-numbers').checked,
         document.querySelector('#max-length').value,
